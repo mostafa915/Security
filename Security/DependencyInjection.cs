@@ -52,18 +52,17 @@ namespace Security
 
         private static IServiceCollection AddCorsBroswer(this IServiceCollection services)
         {
-            //var allowdOrings =  configuration.GetSection("AllowedOrings").Get<string[]>();
-
             services.AddCors(options =>
             {
-                options.AddDefaultPolicy(builder =>
+                options.AddPolicy("AllowFrontend", builder =>
                 {
                     builder
-                    .AllowAnyHeader()
-                    .AllowAnyMethod()
-                    .AllowAnyOrigin();
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowAnyOrigin();
                 });
             });
+
             return services;
         }
         private static IServiceCollection AddGlobalExceptionHandler(this IServiceCollection services)

@@ -24,11 +24,15 @@ if (app.Environment.IsDevelopment())
                .WithDefaultHttpClient(ScalarTarget.JavaScript, ScalarClient.Fetch);
     });
 }
+app.UseExceptionHandler();
+
 app.UseSerilogRequestLogging();
+
 app.UseHttpsRedirection();
+
+app.UseCors("AllowFrontend");
 
 app.UseAuthorization();
 
 app.MapControllers();
-app.UseExceptionHandler();
 app.Run();
